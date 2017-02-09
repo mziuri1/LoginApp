@@ -14,7 +14,7 @@ public class LoginServlet extends HttpServlet {
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-        
+        response.setStatus(403);
     }
     
     @Override
@@ -23,7 +23,9 @@ public class LoginServlet extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             UserDAO userDAO = new UserDAOImpl();
-            User user = userDAO.login(username, password);
+            User user = userDAO.login(username, String.valueOf(password.hashCode()));
+            response.setContentType("text/html");
+            response.setCharacterEncoding("UTF-8");
             PrintWriter printWriter = response.getWriter();
             if (user == null) {
                 printWriter.append("არასწორი სახელი ან პაროლი");

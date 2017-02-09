@@ -34,11 +34,11 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User login(String username, String password) {
         try {
-            pstmt = con.prepareStatement("SELECT FROM systemuser WHERE username = ? AND password = ?");
+            pstmt = con.prepareStatement("SELECT * FROM systemuser WHERE username = ? AND password = ?");
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-            ResultSet rs = pstmt.getResultSet();
-            if (rs.next()) {
+            ResultSet rs = pstmt.executeQuery();
+            if (rs != null && rs.next()) {
                 User user = new User();
                 user.setName(rs.getString("name"));
                 user.setSurname(rs.getString("surname"));
