@@ -1,13 +1,14 @@
-.loginDiv {
-	text-align: center;
-	margin-top: 50px;
+.loginForm {
+    text-align: center;
+    margin-top: 70px;
 }
 
-.registerDiv {
-	text-align: center;
-	margin-top: 50px;
-}
-
-form {
-	vertical-align: top;
+.registerForm {
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    width: 180px;
+    margin: auto;
+    margin-top: 70px;
 }

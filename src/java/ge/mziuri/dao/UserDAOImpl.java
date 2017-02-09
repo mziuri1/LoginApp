@@ -3,10 +3,15 @@ package ge.mziuri.dao;
 
 import ge.mziuri.model.User;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDAOImpl implements UserDAO{
     
     private Connection con;
+    
+    private PreparedStatement pstmt;
     
     public UserDAOImpl() {
         con = DatabaseUtil.getConnection();
@@ -14,12 +19,39 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void register(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            pstmt = con.prepareStatement("INSERT INTO systemuser (name, surname, username, password) VALUES (?,?,?,?);");
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getSurname());
+            pstmt.setString(3, user.getUsername());
+            pstmt.setString(4, user.getPassword());
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
     public User login(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            pstmt = con.prepareStatement("SELECT FROM systemuser WHERE username = ? AND password = ?");
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.getResultSet();
+            if (rs.next()) {
+                User user = new User();
+                user.setName(rs.getString("name"));
+                user.setSurname(rs.getString("surname"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                return user;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
     
 }

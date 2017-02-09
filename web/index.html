@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>შესვლის გვერდი</title>
-		<link rel="stylesheet" type="text/css" href="public/css/style.css">
-	</head>
-	
-	<body>
-		<div class="loginDiv">
-			<form action="", name="loginForm">
-				<input type="text" name="usernameField" /> <br>
-				<input type="password" name="passwordField" /> <br>
-				<a href="register.html"> რეგისტრაცია </a>
-				<input type="submit" value="შესვლა" />
-			</form>
-		</div>
-	</body>
+    <head>
+        <title>შესვლის გვერდი</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    </head>
+    <body>
+        <div class="loginForm">
+            <form action="LoginServlet" method="post">
+                <input type="text" name="username" /> <br>
+                <input type="password" name="password" /> <br>
+                <a href="register.html"> რეგისტრაცია </a>
+                <input type="submit" value="შესვლა" />
+            </form>
+        </div>
+    </body>
 </html>
