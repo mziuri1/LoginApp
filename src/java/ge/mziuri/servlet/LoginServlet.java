@@ -6,6 +6,7 @@ import ge.mziuri.dao.UserDAOImpl;
 import ge.mziuri.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +31,19 @@ public class LoginServlet extends HttpServlet {
             if (user == null) {
                 printWriter.append("არასწორი სახელი ან პაროლი");
             } else {
-                printWriter.append("ეგაა");
+                Cookie[] cookies = request.getCookies();
+                int count = 0;
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        if (cookie.getName().equals("countVisits")) {
+                            count = Integer.parseInt(cookie.getValue());
+                        }
+                    }
+                }
+                count++;
+                Cookie cookie = new Cookie("countVisits", String.valueOf(count));
+                response.addCookie(cookie);
+                printWriter.append("ეს არის " + count + " შემოსვლა");
             }
             
         } catch (IOException ex) {
