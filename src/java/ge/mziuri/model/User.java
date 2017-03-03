@@ -1,17 +1,18 @@
-
 package ge.mziuri.model;
 
 public class User {
-    
+
     private int id;
-    
+
     private String name;
-    
+
     private String surname;
-    
+
     private String username;
-    
+
     private String password;
+
+    public Item Nivti;
 
     public User() {
     }
@@ -62,7 +63,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
+
 }
