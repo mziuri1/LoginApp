@@ -12,8 +12,6 @@ public class User {
 
     private String password;
 
-    public Item Nivti;
-
     public User() {
     }
 
