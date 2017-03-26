@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class DatabaseUtil {
     
-    public static final String databaseURL = "jdbc:postgresql://localhost:5432/eTrade";
+    public static final String databaseURL = "jdbc:postgresql://localhost:5432/postgres";
     
     public static final String username = "postgres";
     
